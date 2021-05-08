@@ -1,0 +1,21 @@
+
+<b>What are people eating for Lunch?</b>
+<p>You can tell all your friends about your lunch.</p>
+
+{% if lunch_list %}
+    <ul>
+    {% for lunch in lunch_list %}
+    <li> {{ lunch.submitter }} just ate {{ lunch.food }} </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p><em>Nobody has eaten lunch, you must all be starving!</em></p>
+{% endif %}
+
+<b>What are YOU eating?</b>
+<form action="{% url 'new' %}" method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
+
